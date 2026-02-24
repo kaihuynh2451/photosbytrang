@@ -1061,12 +1061,17 @@
         object-fit: cover;
         object-position: center top;
       }
-      /* dark scrim so text stays readable */
+      /* strong bottom-up scrim — photo visible at top, text fully readable at bottom */
       .hero-images::after {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, rgba(247,243,238,0.55) 0%, rgba(247,243,238,0.82) 60%, rgba(247,243,238,0.95) 100%);
+        background: linear-gradient(
+          to bottom,
+          rgba(26,22,18,0.15) 0%,
+          rgba(26,22,18,0.55) 40%,
+          rgba(26,22,18,0.88) 100%
+        );
       }
       .hero-text {
         position: relative;
@@ -1075,12 +1080,17 @@
         width: 100%;
         max-width: 100%;
       }
-      .hero-title { font-size: clamp(2.6rem, 9vw, 4rem); }
-      .hero-desc { font-size: 0.78rem; max-width: 100%; }
+      /* flip all hero text to light so it reads on dark scrim */
+      .hero-eyebrow { color: var(--warm); }
+      .hero-title { color: var(--cream) !important; font-size: clamp(2.6rem, 9vw, 4rem); }
+      .hero-title em { color: var(--warm) !important; }
+      .hero-desc { color: rgba(247,243,238,0.75) !important; font-size: 0.78rem; max-width: 100%; }
       .hero-actions { flex-wrap: wrap; gap: 1rem; }
+      /* make ghost button visible on dark bg */
+      .btn-ghost { color: rgba(247,243,238,0.7) !important; }
       .hero-scroll { left: 50%; }
 
-      /* ── MY STORY — centered, no horizontal overflow ── */
+      /* ── MY STORY — full image, no clipping ── */
       .about {
         display: block;
         overflow: hidden;
@@ -1088,12 +1098,18 @@
       }
       .about-images {
         width: 100%;
-        height: 55vw;
-        min-height: 240px;
-        max-height: 360px;
+        height: auto;
+        min-height: unset;
+        max-height: unset;
         overflow: hidden;
       }
-      .about-img-bg { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+      .about-img-bg {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        object-fit: cover;
+        object-position: center top;
+      }
       .about-content {
         padding: 3rem 1.5rem;
         width: 100%;
