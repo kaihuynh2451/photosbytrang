@@ -665,33 +665,57 @@
     }
 
     /* PRICING REDESIGN */
+    .pricing {
+      padding: 8rem 4rem;
+      background: var(--deep);
+    }
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .pricing-header .section-title { color: var(--cream); }
+    .pricing-header p.reveal {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--light);
+    }
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       max-width: 860px;
-      margin: 0 auto 4rem;
+      margin: 0 auto 3rem;
     }
     .pricing-card {
       border: 1px solid rgba(255,255,255,0.08);
       overflow: hidden;
       transition: border-color 0.3s ease, transform 0.3s ease;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
     .pricing-card:hover { border-color: var(--warm); transform: translateY(-5px); }
     .pricing-img-wrap {
       width: 100%;
-      height: 240px;
+      height: 260px;
       overflow: hidden;
+      flex-shrink: 0;
     }
     .pricing-img-wrap img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center top;
       transition: transform 0.6s ease;
+    }
+    .pricing-img-wrap img.img-senior {
+      object-position: center 20%;
     }
     .pricing-card:hover .pricing-img-wrap img { transform: scale(1.05); }
     .pricing-card-body {
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
     .pricing-name {
       font-family: 'Cormorant Garamond', serif;
@@ -715,6 +739,7 @@
       line-height: 2.2;
       color: var(--light);
       margin-bottom: 2rem;
+      flex: 1;
     }
     .pricing-features li::before { content: '— '; color: var(--warm); }
     .btn-outline {
@@ -728,6 +753,7 @@
       padding: 0.9rem 1.5rem;
       text-decoration: none;
       transition: all 0.3s ease;
+      margin-top: auto;
     }
     .btn-outline:hover { background: var(--warm); border-color: var(--warm); color: var(--deep); }
 
@@ -1589,14 +1615,14 @@
 <section class="pricing" id="pricing">
   <div class="pricing-header">
     <p class="section-label reveal" style="color:var(--warm); display:flex; align-items:center; justify-content:center; gap:1rem;">Investment</p>
-    <h2 class="section-title reveal reveal-delay-1" style="color:var(--cream);">Simple, <em>Transparent</em> Pricing</h2>
-    <p class="reveal reveal-delay-2" style="font-size:0.8rem; color:var(--light); margin-top:0.5rem;">All sessions include full printing rights & online gallery delivery. Prices do not include tax.</p>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--cream); margin-bottom:1rem;">Simple, <em>Transparent</em> Pricing</h2>
+    <p style="font-size:0.8rem; color:var(--light); margin-top:0.5rem; opacity:0.8;">All sessions include full printing rights &amp; online gallery delivery. Prices do not include tax.</p>
   </div>
 
   <!-- Family + Senior row -->
-  <div class="pricing-grid reveal reveal-delay-1">
+  <div class="pricing-grid">
 
-    <div class="pricing-card">
+    <div class="pricing-card reveal">
       <div class="pricing-img-wrap">
         <img src="https://web-images.pixpa.com/s1WBkHrzFN2s6XVNvu0MHQUZ5epwP4X_RWJWtGUv7m0/rs:fit:1200:0/q:90/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNjQ5MTkwODQ1LTIwMjExMDEwLWltZy02NTg4LmpwZw==" alt="Family session" loading="lazy" />
       </div>
@@ -1613,9 +1639,9 @@
       </div>
     </div>
 
-    <div class="pricing-card">
+    <div class="pricing-card reveal reveal-delay-1">
       <div class="pricing-img-wrap">
-        <img src="https://web-images.pixpa.com/2HzJ6DmmkV_86FN2Q6j1DaPJXoJOGP7uWT-bichEAwE/rs:fit:1200:0/q:90/aHR0cHM6Ly9zMy1pbWcucGl4cGEuY29tL2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNzA0OTQwMjM4LTIwMjMxMDE5LTd0MWE1NDI3LWVkaXQuanBn" alt="Senior session" loading="lazy" />
+        <img class="img-senior" src="https://web-images.pixpa.com/2HzJ6DmmkV_86FN2Q6j1DaPJXoJOGP7uWT-bichEAwE/rs:fit:1200:0/q:90/aHR0cHM6Ly9zMy1pbWcucGl4cGEuY29tL2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNzA0OTQwMjM4LTIwMjMxMDE5LTd0MWE1NDI3LWVkaXQuanBn" alt="Senior session" loading="lazy" />
       </div>
       <div class="pricing-card-body">
         <div class="pricing-name">Senior</div>
