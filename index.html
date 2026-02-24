@@ -664,45 +664,38 @@
       z-index: 1;
     }
 
-    /* PRICING */
-    .pricing {
-      padding: 8rem 4rem;
-      background: var(--deep);
-    }
-    .pricing-header { text-align: center; margin-bottom: 5rem; }
-    .pricing-header .section-title { color: var(--cream); }
+    /* PRICING REDESIGN */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 860px;
+      margin: 0 auto 4rem;
     }
     .pricing-card {
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 3rem 2rem;
+      overflow: hidden;
       transition: border-color 0.3s ease, transform 0.3s ease;
       position: relative;
     }
     .pricing-card:hover { border-color: var(--warm); transform: translateY(-5px); }
-    .pricing-card.featured {
-      border-color: var(--warm);
-      background: rgba(201,168,124,0.08);
+    .pricing-img-wrap {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
     }
-    .pricing-featured-label {
-      position: absolute;
-      top: -1px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--warm);
-      color: var(--deep);
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.3rem 1.2rem;
+    .pricing-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .pricing-card:hover .pricing-img-wrap img { transform: scale(1.05); }
+    .pricing-card-body {
+      padding: 2rem;
     }
     .pricing-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-style: italic;
       color: var(--cream);
       font-weight: 300;
@@ -713,7 +706,7 @@
       font-weight: 300;
       color: var(--warm);
       line-height: 1;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
     .pricing-price sup { font-size: 1.2rem; }
     .pricing-features {
@@ -736,10 +729,95 @@
       text-decoration: none;
       transition: all 0.3s ease;
     }
-    .btn-outline:hover, .pricing-card.featured .btn-outline {
-      background: var(--warm);
-      border-color: var(--warm);
-      color: var(--deep);
+    .btn-outline:hover { background: var(--warm); border-color: var(--warm); color: var(--deep); }
+
+    /* Inquire cards */
+    .pricing-inquire-label {
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(201,168,124,0.5);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .pricing-inquire-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-inquire-card:hover { border-color: var(--warm); }
+    .pricing-inquire-img {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .pricing-inquire-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.6);
+    }
+    .pricing-inquire-card:hover .pricing-inquire-img img { transform: scale(1.05); filter: brightness(0.5); }
+    .pricing-inquire-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(26,22,18,0.95) 100%);
+    }
+    .pricing-inquire-content {
+      padding: 1.8rem 2rem 2rem;
+      background: rgba(255,255,255,0.02);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .pricing-inquire-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--cream);
+      font-weight: 300;
+    }
+    .pricing-inquire-sub {
+      font-size: 0.72rem;
+      color: var(--light);
+      line-height: 1.7;
+    }
+    .pricing-inquire-tag {
+      display: inline-block;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm);
+      border: 1px solid var(--warm);
+      padding: 0.3rem 0.9rem;
+      margin-top: 0.5rem;
+      align-self: flex-start;
+    }
+    .pricing-inquire-btn {
+      margin-top: auto;
+      padding-top: 1.2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+    .pricing-inquire-btn:hover { color: var(--warm); letter-spacing: 0.3em; }
+
+    @media (max-width: 768px) {
+      .pricing-grid, .pricing-grid-2 { grid-template-columns: 1fr; }
     }
 
     /* CONTACT */
@@ -1040,8 +1118,8 @@
   <div class="about-images">
     <img
       class="about-img-bg"
-      src="https://px-web-images9.pixpa.com/7KVPOvVzsH0u5I1R21j1kJLfClhIsiezeirrBdMcZ90/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNzA0ODIzNjc3LTg5MDc1OS0yMDIzMDkxNy03dDFhMzI4MC1lZGl0LmpwZw=="
-      alt="Photography by Trang"
+      src="https://web-images.pixpa.com/t1qDiKmIwqHruFM5rFcBE7uO2QJQ-GNL4Ba9BHXePnk/rs:fit:1200:0/q:90/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNjI4ODA1NzEzLTIwMjEwNzI1LWltZy0xODk0LWVkaXQuanBn"
+      alt="Trang Luong photographer"
     />
     <img
       class="about-img-overlay"
@@ -1050,20 +1128,23 @@
     />
   </div>
   <div class="about-content">
-    <p class="section-label reveal">About Me</p>
+    <p class="section-label reveal">My Story</p>
     <h2 class="section-title reveal reveal-delay-1">
       Hello, I'm<br><em>Trang Luong</em>
     </h2>
     <p class="about-text reveal reveal-delay-2">
-      I'm a portraiture and lifestyle photographer based in the heart of Des Moines, Iowa. Photography has always been my way of connecting with people — understanding their stories and translating emotion into timeless images.
+      I'm a single mom with two amazing kids — and I consider myself a very genuine, easy-going, and kinda funny person. Photography has always been a passion of mine, but life put a temporary hold on it.
     </p>
     <p class="about-text reveal reveal-delay-2">
-      I specialize in creating a relaxed, fun, and genuine experience for every client. Whether it's a senior milestone, a family gathering, or an intimate boudoir session, I bring out the most authentic version of you.
+      Now that my daughter is in college and my son is on his way, I am finally able to pursue what brings me immense joy. I know there are a million photographers out there — and yes, your fancy phone takes great shots too. But what I'm most excited about is my ability to capture your unique beauty in stunning, high-quality images right down to the last detail.
+    </p>
+    <p class="about-text reveal reveal-delay-2">
+      Whether it's a classic family session or a creative glamorous shoot, my goal is to bring out your best. I would love to share that special experience with you. Together we can create beautiful images that you will cherish for a <strong>lifetime.</strong>
     </p>
     <div class="about-stats reveal reveal-delay-3">
       <div>
         <div class="stat-num">10+</div>
-        <div class="stat-label">Years Experience</div>
+        <div class="stat-label">Years of Passion</div>
       </div>
       <div>
         <div class="stat-num">500+</div>
@@ -1073,6 +1154,9 @@
         <div class="stat-num">4</div>
         <div class="stat-label">Specialties</div>
       </div>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:2.5rem;">
+      <a href="#contact" class="btn-primary">Let's Work Together</a>
     </div>
   </div>
 </section>
@@ -1376,6 +1460,12 @@
       <div class="masonry-overlay"><span class="masonry-tag">Boudoir</span></div>
     </div>
 
+  </div><!-- end masonry -->
+
+  <div style="display:flex; justify-content:center; margin-top:3rem;">
+    <button id="showMoreBtn" style="display:none; align-items:center; gap:0.8rem; font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--cream); background:transparent; border:1px solid rgba(255,255,255,0.25); padding:1rem 2.8rem; cursor:none; transition:all 0.3s ease;">
+      Load More &nbsp;↓
+    </button>
   </div>
 </section>
 
@@ -1498,47 +1588,80 @@
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="pricing-header">
-    <p class="section-label reveal" style="color:var(--warm);">Investment</p>
-    <h2 class="section-title reveal reveal-delay-1">Simple, <em>Transparent</em> Pricing</h2>
+    <p class="section-label reveal" style="color:var(--warm); display:flex; align-items:center; justify-content:center; gap:1rem;">Investment</p>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--cream);">Simple, <em>Transparent</em> Pricing</h2>
+    <p class="reveal reveal-delay-2" style="font-size:0.8rem; color:var(--light); margin-top:0.5rem;">All sessions include full printing rights & online gallery delivery. Prices do not include tax.</p>
   </div>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="pricing-name">Essential</div>
-      <div class="pricing-price"><sup>$</sup>250</div>
-      <ul class="pricing-features">
-        <li>1-hour session</li>
-        <li>1 location</li>
-        <li>20 edited images</li>
-        <li>Online gallery</li>
-      </ul>
-      <a href="#contact" class="btn-outline">Book Now</a>
+
+  <!-- Family + Senior row -->
+  <div class="pricing-grid reveal reveal-delay-1">
+
+    <div class="pricing-card">
+      <div class="pricing-img-wrap">
+        <img src="https://web-images.pixpa.com/s1WBkHrzFN2s6XVNvu0MHQUZ5epwP4X_RWJWtGUv7m0/rs:fit:1200:0/q:90/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNjQ5MTkwODQ1LTIwMjExMDEwLWltZy02NTg4LmpwZw==" alt="Family session" loading="lazy" />
+      </div>
+      <div class="pricing-card-body">
+        <div class="pricing-name">Family</div>
+        <div class="pricing-price"><sup>$</sup>350</div>
+        <ul class="pricing-features">
+          <li>All immediate family members</li>
+          <li>30+ edited high-res digital images</li>
+          <li>Online gallery delivery</li>
+          <li>Full printing rights</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Book Now</a>
+      </div>
     </div>
-    <div class="pricing-card featured reveal reveal-delay-1">
-      <div class="pricing-featured-label">Most Popular</div>
-      <div class="pricing-name">Signature</div>
-      <div class="pricing-price"><sup>$</sup>450</div>
-      <ul class="pricing-features">
-        <li>2-hour session</li>
-        <li>2 locations</li>
-        <li>40 edited images</li>
-        <li>Online gallery</li>
-        <li>Print release</li>
-      </ul>
-      <a href="#contact" class="btn-outline">Book Now</a>
+
+    <div class="pricing-card">
+      <div class="pricing-img-wrap">
+        <img src="https://web-images.pixpa.com/2HzJ6DmmkV_86FN2Q6j1DaPJXoJOGP7uWT-bichEAwE/rs:fit:1200:0/q:90/aHR0cHM6Ly9zMy1pbWcucGl4cGEuY29tL2NvbS9sYXJnZS84ODQ4NS84ODQ4NS0xNzA0OTQwMjM4LTIwMjMxMDE5LTd0MWE1NDI3LWVkaXQuanBn" alt="Senior session" loading="lazy" />
+      </div>
+      <div class="pricing-card-body">
+        <div class="pricing-name">Senior</div>
+        <div class="pricing-price"><sup>$</sup>375</div>
+        <ul class="pricing-features">
+          <li>Senior portrait session</li>
+          <li>35+ edited high-res digital images</li>
+          <li>Online gallery delivery</li>
+          <li>Full printing rights</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Book Now</a>
+      </div>
     </div>
-    <div class="pricing-card reveal reveal-delay-2">
-      <div class="pricing-name">Premium</div>
-      <div class="pricing-price"><sup>$</sup>650</div>
-      <ul class="pricing-features">
-        <li>3-hour session</li>
-        <li>Multiple locations</li>
-        <li>60+ edited images</li>
-        <li>Online gallery</li>
-        <li>Print release</li>
-        <li>Printed album</li>
-      </ul>
-      <a href="#contact" class="btn-outline">Book Now</a>
+
+  </div>
+
+  <!-- Creative + Boudoir contact-for-pricing row -->
+  <div class="pricing-inquire-label reveal reveal-delay-2">Also available</div>
+  <div class="pricing-grid-2 reveal reveal-delay-3">
+
+    <div class="pricing-inquire-card">
+      <div class="pricing-inquire-img">
+        <img src="https://px-web-images6.pixpa.com/9-V3UClRm_WTv4-WVXOpx1vSEEC5RNDfV2LUx7SHZLY/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNzA0ODIzNDEwLTY0MTc5My0yMDIzMDQxMy03dDFhNzkzOC1lZGl0LmpwZw==" alt="Creative photography" loading="lazy" />
+        <div class="pricing-inquire-overlay"></div>
+      </div>
+      <div class="pricing-inquire-content">
+        <div class="pricing-inquire-name">Creative</div>
+        <div class="pricing-inquire-sub">Artistic &amp; conceptual portrait sessions</div>
+        <div class="pricing-inquire-tag">Contact for Pricing</div>
+        <a href="#contact" class="pricing-inquire-btn">Get in Touch →</a>
+      </div>
     </div>
+
+    <div class="pricing-inquire-card">
+      <div class="pricing-inquire-img">
+        <img src="https://px-web-images4.pixpa.com/KWMLeuefTrnCkJ5jutqiBKodS7j1DGtX6rc-GYtoWcs/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNjI4ODA4NTA3LTczMDQ4My0yMDIxMDMwNy1pbWctNzQ3My5qcGc=" alt="Boudoir photography" loading="lazy" />
+        <div class="pricing-inquire-overlay"></div>
+      </div>
+      <div class="pricing-inquire-content">
+        <div class="pricing-inquire-name">Boudoir</div>
+        <div class="pricing-inquire-sub">Intimate &amp; empowering portrait experience</div>
+        <div class="pricing-inquire-tag">Contact for Pricing</div>
+        <a href="#contact" class="pricing-inquire-btn">Get in Touch →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1638,7 +1761,7 @@
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
-  document.querySelectorAll('a, button, .masonry-item, .category-card, .strip-item').forEach(el => {
+  document.querySelectorAll('a, button, .masonry-item, .category-card, .strip-item, #showMoreBtn').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; cursorRing.style.width='60px'; cursorRing.style.height='60px'; });
     el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; cursorRing.style.width='36px'; cursorRing.style.height='36px'; });
   });
@@ -1661,21 +1784,59 @@
   }, { threshold: 0.2 });
   expItems.forEach(el => expObs.observe(el));
 
-  // Portfolio filter
+  // Portfolio filter + Show More
+  const INITIAL_SHOW = 9;
+  let currentFilter = 'all';
+
+  function applyFilter(filter) {
+    currentFilter = filter;
+    const items = Array.from(document.querySelectorAll('.masonry-item'));
+    let visible = 0;
+    items.forEach(item => {
+      const match = filter === 'all' || item.dataset.cat === filter;
+      if (match) {
+        visible++;
+        if (visible <= INITIAL_SHOW) {
+          item.style.display = 'block';
+          item.classList.remove('hidden-item');
+        } else {
+          item.style.display = 'none';
+          item.classList.add('hidden-item');
+        }
+      } else {
+        item.style.display = 'none';
+        item.classList.add('hidden-item');
+      }
+    });
+    const total = items.filter(i => filter === 'all' || i.dataset.cat === filter).length;
+    document.getElementById('showMoreBtn').style.display = total > INITIAL_SHOW ? 'flex' : 'none';
+  }
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.masonry-item').forEach(item => {
-        if (filter === 'all' || item.dataset.cat === filter) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+      applyFilter(btn.dataset.filter);
     });
   });
+
+  document.getElementById('showMoreBtn').addEventListener('click', () => {
+    const hidden = Array.from(document.querySelectorAll('.masonry-item.hidden-item'))
+      .filter(i => currentFilter === 'all' || i.dataset.cat === currentFilter);
+    hidden.slice(0, 6).forEach(item => {
+      item.style.display = 'block';
+      item.classList.remove('hidden-item');
+    });
+    const stillHidden = Array.from(document.querySelectorAll('.masonry-item.hidden-item'))
+      .filter(i => currentFilter === 'all' || i.dataset.cat === currentFilter);
+    if (stillHidden.length === 0) document.getElementById('showMoreBtn').style.display = 'none';
+  });
+
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  showMoreBtn.addEventListener('mouseenter', () => { showMoreBtn.style.borderColor = 'var(--warm)'; showMoreBtn.style.color = 'var(--warm)'; });
+  showMoreBtn.addEventListener('mouseleave', () => { showMoreBtn.style.borderColor = 'rgba(255,255,255,0.25)'; showMoreBtn.style.color = 'var(--cream)'; });
+
+  applyFilter('all');
 
   // Lightbox
   const lightbox = document.getElementById('lightbox');
