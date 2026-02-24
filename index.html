@@ -487,6 +487,8 @@
       aspect-ratio: 3/4;
       overflow: hidden;
       cursor: none;
+      text-decoration: none;
+      display: block;
     }
     .category-card img {
       width: 100%; height: 100%;
@@ -1516,38 +1518,38 @@
     <h2 class="section-title reveal reveal-delay-1">What I <em>Specialize</em> In</h2>
   </div>
   <div class="categories-grid">
-    <div class="category-card reveal">
+    <a class="category-card reveal" data-filter="senior" href="#portfolio">
       <img src="https://px-web-images9.pixpa.com/dmU6Aq_U679bPoKTC5oFqL_qqqjP5JXGhi0XrY1-hq0/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNzcxNzE2NDQyLTI5NTgxNS01MC1lZGl0LmpwZw==" alt="Senior" loading="lazy" />
       <div class="category-info">
         <div class="category-name">Senior</div>
         <div class="category-count">Milestones &amp; Beyond</div>
       </div>
       <div class="category-arrow">→</div>
-    </div>
-    <div class="category-card reveal reveal-delay-1">
+    </a>
+    <a class="category-card reveal reveal-delay-1" data-filter="family" href="#portfolio">
       <img src="https://px-web-images4.pixpa.com/8EbVey81mlIwfz9D2do3_veE5xbpAGqNqiztk86llko/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNzcxNzE1NjAxLTMxNDA5OS0yMy1lZGl0LmpwZw==" alt="Family" loading="lazy" />
       <div class="category-info">
         <div class="category-name">Family</div>
         <div class="category-count">Cherished Connections</div>
       </div>
       <div class="category-arrow">→</div>
-    </div>
-    <div class="category-card reveal reveal-delay-2">
+    </a>
+    <a class="category-card reveal reveal-delay-2" data-filter="creative" href="#portfolio">
       <img src="https://px-web-images6.pixpa.com/9-V3UClRm_WTv4-WVXOpx1vSEEC5RNDfV2LUx7SHZLY/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNzA0ODIzNDEwLTY0MTc5My0yMDIzMDQxMy03dDFhNzkzOC1lZGl0LmpwZw==" alt="Creative" loading="lazy" />
       <div class="category-info">
         <div class="category-name">Creative</div>
         <div class="category-count">Artistic Vision</div>
       </div>
       <div class="category-arrow">→</div>
-    </div>
-    <div class="category-card reveal reveal-delay-3">
+    </a>
+    <a class="category-card reveal reveal-delay-3" data-filter="boudoir" href="#portfolio">
       <img src="https://px-web-images4.pixpa.com/KWMLeuefTrnCkJ5jutqiBKodS7j1DGtX6rc-GYtoWcs/rs:fit:1500:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS84ODQ4NS8xNjI4ODA4NTA3LTczMDQ4My0yMDIxMDMwNy1pbWctNzQ3My5qcGc=" alt="Boudoir" loading="lazy" />
       <div class="category-info">
         <div class="category-name">Boudoir</div>
         <div class="category-count">Intimate &amp; Empowering</div>
       </div>
       <div class="category-arrow">→</div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -1853,7 +1855,20 @@
 
   applyFilter('all');
 
-  // Lightbox
+  // Specialty cards → scroll to portfolio with correct filter active
+  document.querySelectorAll('.category-card[data-filter]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filter = card.dataset.filter;
+      // Activate the matching filter button
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      const matchingBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+      if (matchingBtn) matchingBtn.classList.add('active');
+      applyFilter(filter);
+      // Smooth scroll to portfolio section
+      document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   document.querySelectorAll('.masonry-item img').forEach(img => {
